@@ -38,7 +38,7 @@ body {
 
 .board h1 {
   color: #eee;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
 }
 
 .board button {
@@ -85,6 +85,10 @@ body {
 .cell.is-selected {
   color: #fff;
   background: #09f;
+}
+
+.cell__content {
+  font-size: xx-large;
 }
 
 .winner {

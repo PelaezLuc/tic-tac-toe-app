@@ -1,10 +1,12 @@
+export default function GameCell({value, updateGrid}) {
+    const handleClick = () => {
+        updateGrid();
+    }
 
-
-export default function GameCell({children}) {
     return (
-        <div className="cell" key={children} onClick={children}>
+        <div className="cell" key={value} onClick={handleClick}>
             <span className="cell__content">
-                {children}
+                {value}
             </span>
         </div>
     );

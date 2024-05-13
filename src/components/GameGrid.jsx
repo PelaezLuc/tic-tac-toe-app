@@ -1,35 +1,38 @@
-import { useState } from "react";
+import { useContext } from "react";
 import GameCell from "./GameCell";
-import { TURNS, WINNER_COMBOS } from "../constants"; 
+import { TURNS } from "../utils/constants";
+import { useUpdateGrid } from "../hooks/useUpdateGrid";
+import { GameContext } from "./GameProvider";
+import { WinnerModal } from "./WinnerModal";
 
-export default function GameGrid() {
-    const [turn, setTurn] = useState(TURNS.X);
-    const [board, setBorad] = useState(Array(9).fill(null));
-    
-    const updateBoard = () => {
-      const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
-      setTurn(newTurn);
-    }
+export default function GameGrid() { 
+    const { grid, setGrid, turn, setTurn, winner, setWinner } = useContext(GameContext);
+    const { updateGrid } = useUpdateGrid();
+
+    const resetGame = () => {
+      setGrid(Array(9).fill(null));
+      setTurn(TURNS.X);
+      setWinner(null);
+    };
 
     return (
       <>
+        <button onClick={resetGame}>Reset del juego</button>
         <section className="game-grid">
-          {board.map((_, index)=> (
-            <GameCell key={index} value={index}/>
+          {grid.map((value, index)=> (
+            <GameCell key={index} value={value} updateGrid={() => updateGrid(index, grid, setGrid, turn, setTurn)} />
           ))}
         </section>
 
         <section className="turn">
-          {turn === TURNS.X ? (
-            <GameCell>
-              {TURNS.X}
-            </GameCell>
+          {turn === TURNS.X? (
+            <GameCell value={TURNS.X} updateGrid={() => updateGrid()} />
           ) : (
-            <GameCell>
-              {TURNS.O}
-            </GameCell>
+            <GameCell value={TURNS.O} updateGrid={() => updateGrid()} />
           )}
         </section>
+
+        <WinnerModal resetGame={resetGame} winner={winner} />
       </>
     );
 }
