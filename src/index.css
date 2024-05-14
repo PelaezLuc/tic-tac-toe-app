@@ -38,7 +38,6 @@ body {
 
 .board h1 {
   color: #eee;
-  margin-bottom: 30px;
 }
 
 .board button {
@@ -125,8 +124,8 @@ body {
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border: 2px solid #eee;
   border-radius: 5px;
   display: grid;

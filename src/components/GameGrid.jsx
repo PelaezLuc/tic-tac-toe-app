@@ -17,7 +17,7 @@ export default function GameGrid() {
 
     return (
       <>
-        <button onClick={resetGame}>Reset del juego</button>
+        <button onClick={resetGame}>New Game</button>
         <section className="game-grid">
           {grid.map((value, index)=> (
             <GameCell key={index} value={value} updateGrid={() => updateGrid(index, grid, setGrid, turn, setTurn)} />

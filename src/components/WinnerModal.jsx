@@ -2,7 +2,7 @@ import GameCell from '../components/GameCell';
 
 export function WinnerModal ({ winner, resetGame }) {  
     if (winner === null) return null;
-    const winnerText = winner === false ? 'Empate' : 'Ganó:';
+    const winnerText = winner === false ? 'Draw' : 'Winner';
   
     return (
         <section className="winner">
@@ -14,7 +14,7 @@ export function WinnerModal ({ winner, resetGame }) {
                 </header>   
                 
                 <footer>
-                <button onClick={resetGame}>New Game</button>
+                <button onClick={resetGame}>Play again</button>
                 </footer>
             </div>
         </section> 
